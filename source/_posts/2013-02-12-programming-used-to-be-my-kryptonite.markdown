@@ -34,7 +34,7 @@ categories:
 <strong>Conclusion</strong>
 <p>Code literacy is at an abysmally low level today. Why? Children and adolescents are not properly stimulated to pick up programming from a young age. It’s a shame, since software is eating the world, taking over large parts of the value chain in nearly every industry.</p>
 
-<p>We don’t need more bankers, consultants, brokers, or other types of information-shufflers. We need people that can build. My advice? Learn how to code. Now!</p>
+<p>We don’t need more bankers, consultants, brokers, or any other type of information-shuffler for that matter. We need people that can build. My advice? Learn how to code. Now!</p>
 
 <p>Would you agree?</p>
 </div>
