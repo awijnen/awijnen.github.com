@@ -6,8 +6,6 @@ comments: true
 categories: 
 ---
 <div class='container'>
-<h1>Programming used to be my kryptonite</h1>
-
 <p>As an EE major I enjoyed dabbling with hardware. Nice and tangible. However, for some strange reason, I consistently cringed at the thought of writing a line of code. </p>
 
 <p>The fact that the first programming class I ever took was an introduction to JAVA might have something to do with that. Thanks a lot Alma Mater! You managed to disinterest me in the one field that'll literally shake up every industry in the foreseeable future. Code was my kryptonite. Yet I look ridiculous in spandex, I would die if I jumped out of a window, and I don't have a twelve pack.</p>
