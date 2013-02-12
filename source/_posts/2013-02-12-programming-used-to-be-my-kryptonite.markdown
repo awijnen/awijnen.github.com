@@ -8,7 +8,7 @@ categories:
 <div class='container'>
 <p>As an EE major I enjoyed dabbling with hardware. Nice and tangible. However, for some strange reason, I consistently cringed at the thought of writing a line of code. </p>
 
-<p>The fact that the first programming class I ever took was an introduction to JAVA might have something to do with that. Thanks a lot <a href="http://www.kul.com">Alma Mater</a>! You managed to disinterest me in the one field that'll literally shake up every industry in the foreseeable future. Code was my kryptonite. Yet I look ridiculous in spandex, I would die if I jumped out of a window, and I don't have a twelve pack.</p>
+<p>The fact that the first programming class I ever took was an introduction to JAVA might have something to do with that. Thanks a lot <a href="http://www.kul.com">Alma Mater</a>! You managed to disinterest me in the one field that is thoroughly shaking up every traditional industry in the years to come. Code was my kryptonite. Yet I look ridiculous in spandex, I would die if I jumped out of a window, and I don't have a twelve pack. Not fair!</p>
 
 <img src="http://www.allmotivated.com/pictures/Demotivational-pictures-red_Kryptonite.jpg" alt="Red Kryptonite">
 <br><br>
