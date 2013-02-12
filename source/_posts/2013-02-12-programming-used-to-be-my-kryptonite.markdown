@@ -8,14 +8,14 @@ categories:
 <div class='container'>
 <p>As an EE major I enjoyed dabbling with hardware. Nice and tangible. However, for some strange reason, I consistently cringed at the thought of writing a line of code. </p>
 
-<p>The fact that the first programming class I ever took was an introduction to JAVA might have something to do with that. Thanks a lot <a href="http://www.kul.com">Alma Mater</a>! You managed to disinterest me in the one field that is thoroughly shaking up every traditional industry in the years to come. Code was my kryptonite. Yet I look ridiculous in spandex, I would die if I jumped out of a window, and I don't have a twelve pack. Not fair!</p>
+<p>The fact that the first programming class I ever took was an introduction to JAVA might have something to do with that. Thanks a lot <a href="http://www.kul.com">Alma Mater</a>! You managed to disinterest me in the one field that is thoroughly shaking up every traditional industry in the world. Code became my kryptonite. Yet I look ridiculous in spandex, I would die if I jumped out of a window, and I don't have a twelve pack. Not fair!</p>
 
 <img src="http://www.allmotivated.com/pictures/Demotivational-pictures-red_Kryptonite.jpg" alt="Red Kryptonite">
 <br><br>
 
 <p>Luckily, I found the light.</p>
 
-<p>Last year, with the advent of amazing initiatives like <a href="http://www.teamtreehouse.com">Team Treehouse</a>, <a href="www.codeschool.com">CodeSchool</a>, and <a href="www.codecademy.com">Codecademy</a>, the programming education was disrupted. Early 2012, together with <a href="http://www.codecademy.com/blog/50-make-2013-your-code-year">450,000 others</a>, I pledged to add a new skill to my repertoire. To add some fuel to the fire, I took a four-month sabbatical to start off 2013 to attend the <a href="http://www.flatironschool.com">Flatiron School</a>.</p>
+<p>Last year, with the advent of some amazing initiatives like <a href="http://www.teamtreehouse.com">Team Treehouse</a>, <a href="www.codeschool.com">CodeSchool</a>, and <a href="www.codecademy.com">Codecademy</a>, we took leaps and bounds with respect to teaching programming. Early 2012, together with <a href="http://www.codecademy.com/blog/50-make-2013-your-code-year">450,000 others</a>, I pledged to add a new skill to my repertoire. To add some fuel to the fire, I took a four-month sabbatical to start off 2013 to attend the <a href="http://www.flatironschool.com">Flatiron School</a>.</p>
 
 <p>I feel strongly about the need to achieve code literacy. Here are four reasons why I think you should too:</p>
 <strong>1. Economic value</strong>
