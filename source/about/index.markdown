@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 ---
-<p>My name is Anthony Wijnen. Borne and raised in Belgium. Electrical engineer by education. Entrepreneur by aspiration. World traveler, I've lived  and worked in Europe, Asia, and the US. My goal is to be a builder. I want to make a dent in the universe through great products, working together with even better teams.</p>
+<p>My name is Anthony Wijnen. Borne and raised in Belgium. Family man by default. Engineer by education. Work hard, play hard by lifestyle. ABLE (Always Be Learning & Exploring) by personality. Yes, I just coined that acronym. Explorer by occupation. Lived and worked in France, China, and the US. Spent the last three years in the Bay Area. My strong suite? Tenacity, and being the glue between people that are more talented than I am.</p>
 
 <p><section class="vcard" itemscope itemtype="http://data-vocabulary.org/Person"></p>
 
