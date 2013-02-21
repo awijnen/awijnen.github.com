@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://awijnen.github.com/blog/2013/02/05/hello-world/</loc>
+        <lastmod>2013-02-21T10:13:20-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://awijnen.github.com/blog/2013/02/12/programming-used-to-be-my-kryptonite/</loc>
+        <lastmod>2013-02-21T10:13:20-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://awijnen.github.com/404.html</loc>
+        <lastmod>2013-02-21T10:13:20-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://awijnen.github.com/about/</loc>
+        <lastmod>2013-02-21T10:13:20-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://awijnen.github.com/blog/archives/</loc>
+        <lastmod>2013-02-21T10:13:20-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://awijnen.github.com/</loc>
+        <lastmod>2013-02-21T10:13:20-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://awijnen.github.com/robots.txt</loc>
+        <lastmod>2013-02-05T18:20:53-05:00</lastmod>
+    </url>
+</urlset>
