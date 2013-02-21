@@ -23,10 +23,16 @@ footer: true
     <dd itemprop="name">Anthony Wijnen</dd>
     <dt>Email:</dt>
     <dd>anthony.wijnen@gmail.com</dd>
+    <dt>Cell:</dt>
+    <dd>US: +1(339)226-1818</dd>
+    <dt></dt>
+    <dd>BE: +32(474)972-860</dd>
     <dt>Twitter:</dt>
     <dd itemprop="url"><a href="https://twitter.com/anthonywijnen">@anthonywijnen</a></dd>
     <dt>GitHub:</dt>
     <dd itemprop="url"><a href="https://github.com/awijnen">@awijnen</a></dd>
+    <dt>AngelList:</dt>
+    <dd itemprop="url"><a href="https://angel.co/anthony-wijnen">@anthonywijnen</a></dd>
 </dl>
 
 
