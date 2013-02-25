@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sinatra | Anthony Wijnen]]></title>
+  <link href="http://awijnen.github.com/blog/categories/sinatra/atom.xml" rel="self"/>
+  <link href="http://awijnen.github.com/"/>
+  <updated>2013-02-25T00:11:14-05:00</updated>
+  <id>http://awijnen.github.com/</id>
+  <author>
+    <name><![CDATA[Anthony Wijnen]]></name>
+    <email><![CDATA[anthony.wijnen@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Building my first Sinatra app and deploying to Heroku]]></title>
+    <link href="http://awijnen.github.com/blog/2013/02/25/building-your-first-sinatra-app-and-deploying-to-heroku/"/>
+    <updated>2013-02-25T00:06:00-05:00</updated>
+    <id>http://awijnen.github.com/blog/2013/02/25/building-your-first-sinatra-app-and-deploying-to-heroku</id>
+    <content type="html"><![CDATA[<div class='container'>
+  <p>Here's the projects. It will be subdivided in:</p>
+  <ul>
+    <li>Item 1</li>
+    <li>Item 1</li>
+    <li>Item 1</li>    
+  </ul>
+
+  <h1>Component 1</h1>
+
+  <h1>Component 2</h1>
+
+  <h1>Component 3</h1>
+
+  <h1>Conclusion</h1>
+
+
+</div>
+
+]]></content>
+  </entry>
+  
+</feed>

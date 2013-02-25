@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Anthony Wijnen]]></title>
-  <link href="http://awijnen.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: personal | Anthony Wijnen]]></title>
+  <link href="http://awijnen.github.com/blog/categories/personal/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
   <updated>2013-02-25T00:11:14-05:00</updated>
   <id>http://awijnen.github.com/</id>
@@ -14,33 +14,6 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Building my first Sinatra app and deploying to Heroku]]></title>
-    <link href="http://awijnen.github.com/blog/2013/02/25/building-your-first-sinatra-app-and-deploying-to-heroku/"/>
-    <updated>2013-02-25T00:06:00-05:00</updated>
-    <id>http://awijnen.github.com/blog/2013/02/25/building-your-first-sinatra-app-and-deploying-to-heroku</id>
-    <content type="html"><![CDATA[<div class='container'>
-  <p>Here&#8217;s the projects. It will be subdivided in:</p>
-  <ul>
-    <li>Item 1</li>
-    <li>Item 1</li>
-    <li>Item 1</li>    
-  </ul>
-
-  <h1>Component 1</h1>
-
-  <h1>Component 2</h1>
-
-  <h1>Component 3</h1>
-
-  <h1>Conclusion</h1>
-
-
-</div>
-
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Programming used to be my kryptonite]]></title>
     <link href="http://awijnen.github.com/blog/2013/02/12/programming-used-to-be-my-kryptonite/"/>
     <updated>2013-02-12T11:43:00-05:00</updated>
@@ -48,7 +21,7 @@
     <content type="html"><![CDATA[<div class='container'>
 <p>As an EE major I enjoyed dabbling with hardware. Nice and tangible. However, for some strange reason, I consistently cringed at the thought of writing a line of code. </p>
 
-<p>The fact that the first programming class I ever took was an introduction to JAVA might have something to do with that. Thanks a lot <a href="http://www.kul.com">Alma Mater</a>! You managed to disinterest me in the one field that is thoroughly shaking up every traditional industry in the world. Code became my kryptonite. Yet I look ridiculous in spandex, I would die if I jumped out of a window, and I don&#8217;t have a twelve pack. Not fair!</p>
+<p>The fact that the first programming class I ever took was an introduction to JAVA might have something to do with that. Thanks a lot <a href="http://www.kul.com">Alma Mater</a>! You managed to disinterest me in the one field that is thoroughly shaking up every traditional industry in the world. Code became my kryptonite. Yet I look ridiculous in spandex, I would die if I jumped out of a window, and I don't have a twelve pack. Not fair!</p>
 
 <img src="http://www.allmotivated.com/pictures/Demotivational-pictures-red_Kryptonite.jpg" alt="Red Kryptonite">
 <br><br>
@@ -78,16 +51,6 @@
 
 <p>Would you agree?</p>
 </div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://awijnen.github.com/blog/2013/02/05/hello-world/"/>
-    <updated>2013-02-05T20:13:00-05:00</updated>
-    <id>http://awijnen.github.com/blog/2013/02/05/hello-world</id>
-    <content type="html"><![CDATA[<p>Some text</p>
 
 ]]></content>
   </entry>
