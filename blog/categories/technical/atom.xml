@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technical | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T09:28:42-05:00</updated>
+  <updated>2013-02-25T09:30:46-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -93,7 +93,7 @@
 
   <p>First</p>
 
-  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Set up Database in feelingfriday.rb  </span></figcaption>
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Retrieve all emotions in feelingfriday.rb  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -104,6 +104,43 @@
 </span><span class='line'>        <span class="vi">@title</span> <span class="o">=</span> <span class="s2">&quot;All Emotions&quot;</span>
 </span><span class='line'>        <span class="n">erb</span> <span class="ss">:home</span>
 </span><span class='line'>      <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Retrieve all emotions in feelingfriday.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">      &lt;section id=&quot;add&quot;&gt;</span>
+</span><span class='line'><span class="x">      &lt;form action=&quot;/&quot; method=&quot;post&quot;&gt;</span>
+</span><span class='line'><span class="x">        &lt;textarea name=&quot;content&quot; placeholder=&quot;Your deepest emotions go here&amp;hellip;&quot;&gt;&lt;/textarea&gt;</span>
+</span><span class='line'><span class="x">        &lt;input type=&quot;submit&quot; value=&quot;Save emotion&quot;&gt;</span>
+</span><span class='line'><span class="x">      &lt;/form&gt;</span>
+</span><span class='line'><span class="x">    &lt;/section&gt;</span>
+</span><span class='line'><span class="x">    </span><span class="cp">&lt;%</span> <span class="vi">@notes</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">note</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x">  </span>
+</span><span class='line'><span class="x">      &lt;article&gt;  </span>
+</span><span class='line'><span class="x">        &lt;p&gt;  </span>
+</span><span class='line'><span class="x">          </span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span><span class="x">  </span>
+</span><span class='line'><span class="x">          &lt;span&gt;&lt;a href=&quot;http://awijnen.github.com/</span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="x">&quot;&gt;[edit]&lt;/a&gt;&lt;/span&gt;  </span>
+</span><span class='line'><span class="x">        &lt;/p&gt;   </span>
+</span><span class='line'><span class="x">        &lt;p class=&quot;meta&quot;&gt;Created: </span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">created_at</span> <span class="cp">%&gt;</span><span class="x">&lt;/p&gt;  </span>
+</span><span class='line'><span class="x">      &lt;/article&gt;</span>
+</span><span class='line'><span class="x">      &lt;br&gt;</span>
+</span><span class='line'><span class="x">    </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"> </span>
+</span><span class='line'><span class="x">    &lt;p class=&quot;remove&quot;&gt;Remove all this Emotional Crap!&lt;a href=&#39;http://awijnen.github.com/migrate&#39;&gt;&lt;input type=&quot;submit&quot; name=&quot;Submit&quot;&gt;&lt;/a&gt;&lt;/p&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
   <h3>Create a layout</h3>
