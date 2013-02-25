@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sinatra | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/sinatra/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T09:30:46-05:00</updated>
+  <updated>2013-02-25T09:31:43-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -93,7 +93,7 @@
 
   <p>First</p>
 
-  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Retrieve all emotions in feelingfriday.rb  </span></figcaption>
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Get all emotions from the database and display them in the home page  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -106,7 +106,7 @@
 </span><span class='line'>      <span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Retrieve all emotions in feelingfriday.rb  </span></figcaption>
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Create a view for the home page  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
