@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Postgres | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/postgres/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T00:11:14-05:00</updated>
+  <updated>2013-02-25T00:11:59-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -26,13 +26,13 @@
     <li>Item 1</li>    
   </ul>
 
-  <h1>Component 1</h1>
+  <h3>Component 1</h3>
 
-  <h1>Component 2</h1>
+  <h3>Component 2</h3>
 
-  <h1>Component 3</h1>
+  <h3>Component 3</h3>
 
-  <h1>Conclusion</h1>
+  <h3>Conclusion</h3>
 
 
 </div>
