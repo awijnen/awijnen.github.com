@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sinatra | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/sinatra/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T09:21:18-05:00</updated>
+  <updated>2013-02-25T09:21:55-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -46,12 +46,10 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
 </span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;data_mapper&#39;</span>
 </span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;dm-postgres-adapter&#39;</span>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
   <h3>Build your model and Setup the Database</h3>
@@ -72,8 +70,6 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;postgres://localhost/mydb&#39;</span><span class="p">)</span>
 </span><span class='line'>
 </span><span class='line'>      <span class="k">class</span> <span class="nc">Note</span>
@@ -88,9 +84,7 @@
 </span><span class='line'>        <span class="n">property</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="no">DateTime</span>
 </span><span class='line'>      <span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="no">DataMapper</span><span class="o">.</span><span class="n">finalize</span><span class="o">.</span><span class="n">auto_upgrade!</span> <span class="c1"># automatically update the database to contain the tables and fields we have set, and to do so again if we make any changes to the schema</span>
-</span><span class='line'>
-</span><span class='line'>
+</span><span class='line'>      <span class="no">DataMapper</span><span class="o">.</span><span class="n">finalize</span><span class="o">.</span><span class="n">auto_upgrade!</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
   <h3>Setting up the Home Page</h3>
