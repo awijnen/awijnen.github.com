@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T01:10:52-05:00</updated>
+  <updated>2013-02-25T09:12:43-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -23,7 +23,7 @@
 
   <p>That being said, I noticed that 1) some people get somewhat uncomfortable when they have to open up in public, and 2) others were scrambling to get their thoughts together, when being put on the spot. I've been in the second category before. The 'Feeling Friday Web App' should come in handy to make this whole experience even more awesome by allowing anonymous sharing whenever you're up for it. At the same time it's a great way to learn about data-driven Sinatra web apps using the DataMapper gem, and deploying them to Heroku. Both of which I had never done before up until 24h ago.</p>
 
-  <p>Before moving any further, if you got cold shivers reading the worth Sinatra or DataMapper, I suggest you read both <a href="http://net.tutsplus.com/tutorials/ruby/singing-with-sinatra/">this</a> and <a href="http://www.blacktm.com/talks/building_web_apps_with_rack_and_sinatra">this</a> tutorial.</p>
+  <p>Before moving any further, if you got cold shivers reading the word Sinatra or DataMapper, I suggest you read both <a href="http://net.tutsplus.com/tutorials/ruby/singing-with-sinatra/">this</a> and <a href="http://www.blacktm.com/talks/building_web_apps_with_rack_and_sinatra">this</a> tutorial first.</p>
 
   <p>Let's get cracking. Here's what we'll use to build our app:</p>
 
@@ -39,7 +39,14 @@
   </ul>
 
   <h3>Easy does it</h3>
-  <p>gems</p>
+  <p>Let's start it off simple. We first create a new folder and add the brains of the operation, i.e. <code>feelingfriday.rb</code>. Here are the gems we'll be using:</p>
+  
+    ```[ruby] [Gems to include]
+    require 'rubygems'
+    require 'sinatra'
+    require 'data_mapper'
+    require 'dm-postgres-adapter'
+    ```
 
   <h3>Setting up the Home Page</h3>
 
