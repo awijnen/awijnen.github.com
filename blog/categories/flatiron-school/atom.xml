@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Flatiron School | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/flatiron-school/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T09:26:20-05:00</updated>
+  <updated>2013-02-25T09:28:42-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -88,7 +88,23 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
   <h3>Setting up the Home Page</h3>
+  <p>Once we're done it'll look like this, but let's take it one step at a time.</p>
   <img src="http://awijnen.github.com/images/feelingfridayapp.png">
+
+  <p>First</p>
+
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Set up Database in feelingfriday.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="vi">@notes</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">all</span> <span class="ss">:order</span> <span class="o">=&gt;</span> <span class="ss">:id</span><span class="o">.</span><span class="n">desc</span>
+</span><span class='line'>        <span class="vi">@title</span> <span class="o">=</span> <span class="s2">&quot;All Emotions&quot;</span>
+</span><span class='line'>        <span class="n">erb</span> <span class="ss">:home</span>
+</span><span class='line'>      <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
   <h3>Create a layout</h3>
 
