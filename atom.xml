@@ -4,7 +4,7 @@
   <title><![CDATA[Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T09:22:20-05:00</updated>
+  <updated>2013-02-25T09:26:20-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -57,7 +57,7 @@
   <h3>Build your model and Setup the Database</h3>
 
     
-<figure class='code'><figcaption><span>Set up Database  </span></figcaption>
+<figure class='code'><figcaption><span>Set up Database in feelingfriday.rb  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -92,6 +92,7 @@
 
 
   <h3>Setting up the Home Page</h3>
+  <img src="http://awijnen.github.com/images/feelingfridayapp.png">
 
   <h3>Create a layout</h3>
 
