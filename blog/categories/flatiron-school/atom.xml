@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Flatiron School | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/flatiron-school/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T09:18:38-05:00</updated>
+  <updated>2013-02-25T09:21:18-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -51,6 +51,45 @@
 </span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
 </span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;data_mapper&#39;</span>
 </span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;dm-postgres-adapter&#39;</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+  <h3>Build your model and Setup the Database</h3>
+
+    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Set up Database  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;postgres://localhost/mydb&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">class</span> <span class="nc">Note</span>
+</span><span class='line'>        <span class="kp">include</span> <span class="ss">DataMapper</span><span class="p">:</span><span class="ss">:Resource</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># setting up a Notes table</span>
+</span><span class='line'>        <span class="c1"># setting up database schema with 5 columns</span>
+</span><span class='line'>        <span class="n">property</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Serial</span> <span class="c1"># serial will auto increment</span>
+</span><span class='line'>        <span class="n">property</span> <span class="ss">:content</span><span class="p">,</span> <span class="no">Text</span><span class="p">,</span> <span class="ss">:required</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>        <span class="n">property</span> <span class="ss">:complete</span><span class="p">,</span> <span class="no">Boolean</span><span class="p">,</span> <span class="ss">:required</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>        <span class="n">property</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">DateTime</span>
+</span><span class='line'>        <span class="n">property</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="no">DateTime</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="no">DataMapper</span><span class="o">.</span><span class="n">finalize</span><span class="o">.</span><span class="n">auto_upgrade!</span> <span class="c1"># automatically update the database to contain the tables and fields we have set, and to do so again if we make any changes to the schema</span>
+</span><span class='line'>
 </span><span class='line'>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
