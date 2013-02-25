@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Heroku | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/heroku/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T00:12:22-05:00</updated>
+  <updated>2013-02-25T00:42:02-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -14,12 +14,17 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Building my first Sinatra app and deploying to Heroku]]></title>
+    <title type="html"><![CDATA[Building my first data-driven Sinatra app and deploying it to Heroku]]></title>
     <link href="http://awijnen.github.com/blog/2013/02/25/building-your-first-sinatra-app-and-deploying-to-heroku/"/>
     <updated>2013-02-25T00:06:00-05:00</updated>
     <id>http://awijnen.github.com/blog/2013/02/25/building-your-first-sinatra-app-and-deploying-to-heroku</id>
     <content type="html"><![CDATA[<div class='container'>
-  <p>Here's the projects. It will be subdivided in:</p>
+  <p>We just wrapped up our third week at the <a href="http://www.flatironschool.com">Flatiron School</a>. It's been intense, exhausting, but at the same time insanely gratifying. One of the things that kept us all sane is our weekly tradition called 'Feeling Friday', in which we collectively share what's on our mind.</p>
+
+  <p>That being said, I noticed that 1) some people get somewhat uncomfortable when it comes to opening up in group, and 2) others were scrambling to get their thoughts together, when being put on the spot. I've been in the second category before. The 'Feeling Friday Web App' should come in handy to make this whole experience even more awesome for everyone involved by allowing anonymous sharing whenever you're up for it. At the same time it's a great way to learn about data-driven Sinatra web apps, and deploying them to Heroku. Both of which I had never done before up until 24h ago.</p>
+
+  <p>Let's get down and dirty. Here's what to expect:</p>
+
   <ul>
     <li>Item 1</li>
     <li>Item 1</li>
