@@ -4,7 +4,7 @@
   <title><![CDATA[Category: HTML5 boilerplate | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/html5-boilerplate/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T09:16:46-05:00</updated>
+  <updated>2013-02-25T09:18:38-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -41,7 +41,7 @@
   <h3>Easy does it</h3>
   <p>Let's start it off simple. We first create a new folder and add the brains of the operation, i.e. <code>feelingfriday.rb</code>. Here are the gems we'll be using:</p>
 
-    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[Gems to include in feelingfriday.rb] [] </span></figcaption>
+    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Gems to include in feelingfriday.rb  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
