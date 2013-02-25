@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-02-25T09:12:43-05:00</updated>
+  <updated>2013-02-25T09:14:12-05:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -41,6 +41,15 @@
   <h3>Easy does it</h3>
   <p>Let's start it off simple. We first create a new folder and add the brains of the operation, i.e. <code>feelingfriday.rb</code>. Here are the gems we'll be using:</p>
   
+    ``` ruby Discover if a number is prime http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/ Source Article
+    class Fixnum
+      def prime?
+        ('1' * self) !~ /^1?$|^(11+?)\1+$/
+      end
+    end
+    ```
+
+
     ```[ruby] [Gems to include]
     require 'rubygems'
     require 'sinatra'
