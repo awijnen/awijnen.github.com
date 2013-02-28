@@ -3,7 +3,7 @@ layout: post
 title: "Programming used to be my kryptonite"
 date: 2013-02-12 11:43
 comments: true
-categories: 
+categories: [Flatiron School, general, personal]
 ---
 <div class='container'>
 <p>As an EE major I enjoyed dabbling with hardware. Nice and tangible. However, for some strange reason, I consistently cringed at the thought of writing a line of code. </p>
