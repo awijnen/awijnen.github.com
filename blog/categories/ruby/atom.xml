@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-03-18T23:32:25-04:00</updated>
+  <updated>2013-03-18T23:33:17-04:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -111,7 +111,7 @@
     <h3>Create a layout</h3>
   <p>It's time to create the html struture of our page. We'll do that in two parts. The first part is the skeleton of the website, which will basically be everything that's copied across pages (i.e. header, footer, background, etcera. This is typically stored in the <code>layout.erb</code> file.</p>
 
-  {% codeblock layout.erb lang:erb %}
+  {% codeblock layout.erb lang:html %}
   <!doctype html>  
     <html lang="en">  
     <head>  
