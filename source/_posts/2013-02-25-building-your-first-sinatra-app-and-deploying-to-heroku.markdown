@@ -8,7 +8,7 @@ categories: [Flatiron School, technical, Ruby, Sinatra, Heroku, HTML5 boilerplat
 <div class='container'>
   <p>We just wrapped up our third week at the <a href="http://www.flatironschool.com">Flatiron School</a>. It's been intense, exhausting, but at the same time insanely gratifying. One of the things that kept us all sane is our weekly tradition called 'Feeling Friday', in which we collectively share what's on our mind.</p>
 
-  <p>I wanted to make the process of sharing emotions in a class room setting, somewhat more fun, anonymous, and continuous (as opposed to just once every week). The result is the Feeling Friday app, which you can find on <a href="http://www.feelingfriday.me">FeelingFriday.me</a>.</p>
+  <p>I wanted to make the process of sharing emotions in a class room setting somewhat more fun, anonymous, and continuous (as opposed to just once every week). The result is the Feeling Friday app, which you can find on <a href="http://feelingfriday.me">FeelingFriday.me</a>.</p>
 
   <p>Before moving any further, if you got cold shivers reading the word Sinatra or DataMapper, I suggest you read both <a href="http://net.tutsplus.com/tutorials/ruby/singing-with-sinatra/">this</a> and <a href="http://www.blacktm.com/talks/building_web_apps_with_rack_and_sinatra">this</a> tutorial first.</p>
 
