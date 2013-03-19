@@ -140,6 +140,8 @@
 
   <p>We’re going to be using a PostgreSQL database to store the notes, and we’ll use the gem <a href="http://datamapper.org/">DataMapper</a> to communicate with the database. DataMapper is a gem that packages all the code you need to automatically map the classes you create to entries in the database. For example, we&#8217;ll create a class Notes, which DataMapper will &#8216;map&#8217; to a Notes table in the database. Every time you create a new Notes instance (i.e. you create a note), DataMapper will make sure it saves it to the database. Finally, you&#8217;ll need to specify an adapter gem, that&#8217;ll allow DataMapper to talk to the type of database you selected (in our case PostgreSQL).</p>
 
+  <p>Please note that throughout the rest of this post I&#8217;ll use &#8216;Note&#8217; and &#8216;Emotion&#8217; interchangeably.</p>
+
   <h3>Build your model and Setup the Database</h3>
 
   <p>Let&#8217;s take advantage of <a href="http://datamapper.org/">DataMapper</a> right away. We&#8217;ll create the class Note, and Comment, which are the two key building block of our Feeling Friday app, and we&#8217;ll include DataMapper as a resource. This allows us to specify properties, that&#8217;ll map to columns in the database table.</p>
@@ -211,7 +213,9 @@
   <p>Once we&#8217;re done it&#8217;ll look like this, but let&#8217;s take it one step at a time.</p>
   <img src="/images/feelingfridayapp.png">
 
-  <p>First, let&#8217;s go into <code>feelingfriday.rb</code> and</p>
+  <p>First, let&#8217;s go into <code>feelingfriday.rb</code> and create the necessary routes to create, read, update, and delete notes and comments</p>
+
+  <h3>Get all emotions</h3>
 
   
 <figure class='code'><figcaption><span>Get all emotions from the database and display them in the home page  </span></figcaption>
@@ -270,6 +274,103 @@
 </span><span class='line'><span class="x">        &lt;br&gt;</span>
 </span><span class='line'><span class="x">      </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"> </span>
 </span><span class='line'><span class="x">      &lt;p class=&quot;remove&quot;&gt;Remove all this Emotional Crap!&lt;a href=&#39;/migrate&#39;&gt;&lt;input type=&quot;submit&quot; name=&quot;Submit&quot;&gt;&lt;/a&gt;&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+  <h3>Create an Emotion</h3>
+    <p>Right now if you try submitting the form on the home page, you’re going to get a route error. Let’s create the POST route for the home page now:</p>
+    
+    
+<figure class='code'><figcaption><span>Create a new emotion and save it to the database  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="n">post</span> <span class="s1">&#39;/post&#39;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">n</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:content</span><span class="o">]</span>
+</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">updated_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>        <span class="n">redirect</span> <span class="s1">&#39;/&#39;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+    <p>So when a post request is made on the homepage, we create a new Note object in n (thanks to the DataMapper ORM, Note.new represents a new row in the notes table in the database). The content field is set to the submitted data from the textarea and the created_at and updated_at datetime fields are set to the current timestamp.</p>
+    
+    <p>The new note is then saved, and the user redirected back to the homepage where the new note will be displayed.</p>
+
+  <h3>Update an emotion</h3>
+   
+<figure class='code'><figcaption><span>Before we can update an emotion we have to fetch it first  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">get</span> <span class="s1">&#39;/:id&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="vi">@note</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">get</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
+</span><span class='line'>      <span class="vi">@title</span> <span class="o">=</span> <span class="s2">&quot;Edit note #</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="n">erb</span> <span class="ss">:edit</span>
+</span><span class='line'>    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+    
+<figure class='code'><figcaption><span>Update an existing emotion and save it to the database  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="n">put</span> <span class="s1">&#39;/:id&#39;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">n</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">get</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
+</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:content</span><span class="o">]</span>
+</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">complete</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:complete</span><span class="o">]</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">0</span>
+</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">updated_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>        <span class="n">redirect</span> <span class="s1">&#39;/&#39;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+  <h3>Delete an emotion</h3>
+    
+<figure class='code'><figcaption><span>Before we can delete an emotion we have to fetch it first  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>     <span class="n">get</span> <span class="s1">&#39;/:id/delete&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="vi">@note</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">get</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
+</span><span class='line'>      <span class="vi">@title</span> <span class="o">=</span> <span class="s2">&quot;Confirm deletion of note #</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="n">erb</span> <span class="ss">:delete</span>
+</span><span class='line'>    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+    
+<figure class='code'><figcaption><span>Delete an existing emotion, which removes it from the database  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">delete</span> <span class="s1">&#39;/:id&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">n</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">get</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
+</span><span class='line'>      <span class="n">n</span><span class="o">.</span><span class="n">destroy</span>
+</span><span class='line'>      <span class="n">redirect</span> <span class="s1">&#39;/&#39;</span>
+</span><span class='line'>    <span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
