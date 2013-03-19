@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technical | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-03-18T23:18:49-04:00</updated>
+  <updated>2013-03-18T23:32:25-04:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -41,16 +41,11 @@
   <h3>Easy does it</h3>
   <p>Let's start it off simple. We first create a new folder and add the brains of the operation, i.e. <code>feelingfriday.rb</code>. Here are the gems we'll be using:</p>
 
-    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Gems to include in feelingfriday.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
-</span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
-</span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;data_mapper&#39;</span>
-</span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;dm-postgres-adapter&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+    {% codeblock Gems to include in feelingfriday.rb lang:ruby %}
+    require 'rubygems'
+    require 'sinatra'
+    require 'data_mapper'
+    require 'dm-postgres-adapter'{% endcodeblock %}
 
   <p>We’re going to be using a PostgreSQL database to store the notes, and we’ll use the gem <a href="http://datamapper.org/">DataMapper</a> to communicate with the database. DataMapper is a gem that packages all the code you need to automatically map the classes you create to entries in the database. For example, we'll create a class Notes, which DataMapper will 'map' to a Notes table in the database. Every time you create a new Notes instance (i.e. you create a note), DataMapper will make sure it saves it to the database. Finally, you'll need to specify an adapter gem, that'll allow DataMapper to talk to the type of database you selected (in our case PostgreSQL).</p>
 
@@ -60,64 +55,36 @@
 
   <p>Let's take advantage of <a href="http://datamapper.org/">DataMapper</a> right away. We'll create the class Note, and Comment, which are the two key building block of our Feeling Friday app, and we'll include DataMapper as a resource. This allows us to specify properties, that'll map to columns in the database table.</p>
 
-    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Set up Database in feelingfriday.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;postgres://localhost/mydb&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">class</span> <span class="nc">Note</span>
-</span><span class='line'>        <span class="kp">include</span> <span class="ss">DataMapper</span><span class="p">:</span><span class="ss">:Resource</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1"># setting up a Notes table</span>
-</span><span class='line'>        <span class="c1"># setting up database schema with 5 columns</span>
-</span><span class='line'>        <span class="n">property</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Serial</span> <span class="c1"># serial will auto increment</span>
-</span><span class='line'>        <span class="n">property</span> <span class="ss">:content</span><span class="p">,</span> <span class="no">Text</span><span class="p">,</span> <span class="ss">:required</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'>        <span class="n">property</span> <span class="ss">:complete</span><span class="p">,</span> <span class="no">Boolean</span><span class="p">,</span> <span class="ss">:required</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="kp">false</span>
-</span><span class='line'>        <span class="n">property</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">DateTime</span>
-</span><span class='line'>        <span class="n">property</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="no">DateTime</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">has</span> <span class="n">n</span><span class="p">,</span> <span class="ss">:comments</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">class</span> <span class="nc">Comment</span>
-</span><span class='line'>        <span class="kp">include</span> <span class="ss">DataMapper</span><span class="p">:</span><span class="ss">:Resource</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">property</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Serial</span>
-</span><span class='line'>        <span class="n">property</span> <span class="ss">:content</span><span class="p">,</span> <span class="no">Text</span>
-</span><span class='line'>        <span class="n">property</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">DateTime</span>
-</span><span class='line'>        <span class="n">property</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="no">DateTime</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">belongs_to</span> <span class="ss">:note</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="no">DataMapper</span><span class="o">.</span><span class="n">finalize</span><span class="o">.</span><span class="n">auto_upgrade!</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+    {% codeblock Set up Database in feelingfriday.rb lang:ruby %}
+
+      DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+
+      class Note
+        include DataMapper::Resource
+
+        # setting up a Notes table
+        # setting up database schema with 5 columns
+        property :id, Serial # serial will auto increment
+        property :content, Text, :required => true
+        property :complete, Boolean, :required => true, :default => false
+        property :created_at, DateTime
+        property :updated_at, DateTime
+
+        has n, :comments
+      end
+
+      class Comment
+        include DataMapper::Resource
+
+        property :id, Serial
+        property :content, Text
+        property :created_at, DateTime
+        property :updated_at, DateTime
+
+        belongs_to :note
+      end
+
+      DataMapper.finalize.auto_upgrade!{% endcodeblock %}
 
       <p></p>
 
@@ -129,385 +96,236 @@
 
   <h3>Get all emotions</h3>
 
-  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Get all emotions from the database and display them in the home page  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
-</span><span class='line'>        <span class="vi">@notes</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">all</span> <span class="ss">:order</span> <span class="o">=&gt;</span> <span class="ss">:id</span><span class="o">.</span><span class="n">desc</span>
-</span><span class='line'>        <span class="vi">@title</span> <span class="o">=</span> <span class="s2">&quot;All Emotions&quot;</span>
-</span><span class='line'>        <span class="n">erb</span> <span class="ss">:home</span>
-</span><span class='line'>      <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+  {% codeblock Get all emotions from the database and display them in the home page lang:ruby %}
+      get '/' do
+        @notes = Note.all :order => :id.desc
+        @title = "All Emotions"
+        erb :home
+      end{% endcodeblock %}
 
   <p>On the second line you see how we retrieve all the notes from the database. If you’ve used ActiveRecord (the ORM used in Rails) before, DataMapper’s syntax will feel very familiar. The notes are assigned to the <code>@notes</code> instance variable. It’s important to use instance variables (that’s variables beginning with an @) so that they’ll be accessible from within the view file.
   </p>
-  <p>We set the <code>@title</code> instance variable, and load the views/home.erb view file through the ERB parser.</p> 
-  <p>Create the views/home.erb view file and start it off with the following:
-  </p>
+  <p>We set the <code>@title</code> instance variable, and load the views/home.erb view file through the ERB parser.</p>
+  <p>Now let's first create the structure of our html page, before we start populating it with emotions.</p>
 
-  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Create a view for the home page  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">      &lt;section id=&quot;add&quot;&gt;</span>
-</span><span class='line'><span class="x">      &lt;form action=&quot;/&quot; method=&quot;post&quot;&gt;</span>
-</span><span class='line'><span class="x">        &lt;textarea name=&quot;content&quot; placeholder=&quot;Your deepest emotions go here&amp;hellip;&quot;&gt;&lt;/textarea&gt;</span>
-</span><span class='line'><span class="x">        &lt;input type=&quot;submit&quot; value=&quot;Save emotion&quot;&gt;</span>
-</span><span class='line'><span class="x">      &lt;/form&gt;</span>
-</span><span class='line'><span class="x">      &lt;/section&gt;</span>
-</span><span class='line'><span class="x">      </span><span class="cp">&lt;%</span> <span class="vi">@notes</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">note</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x">  </span>
-</span><span class='line'><span class="x">        &lt;article&gt;  </span>
-</span><span class='line'><span class="x">          &lt;p&gt;  </span>
-</span><span class='line'><span class="x">            </span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span><span class="x">  </span>
-</span><span class='line'><span class="x">            &lt;span&gt;&lt;a href=&quot;http://awijnen.github.com/</span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="x">&quot;&gt;[edit]&lt;/a&gt;&lt;/span&gt;  </span>
-</span><span class='line'><span class="x">          &lt;/p&gt;   </span>
-</span><span class='line'><span class="x">          &lt;p class=&quot;meta&quot;&gt;Created: </span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">created_at</span> <span class="cp">%&gt;</span><span class="x">&lt;/p&gt;  </span>
-</span><span class='line'><span class="x">        &lt;/article&gt;</span>
-</span><span class='line'><span class="x">        &lt;br&gt;</span>
-</span><span class='line'><span class="x">      </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"> </span>
-</span><span class='line'><span class="x">      &lt;p class=&quot;remove&quot;&gt;Remove all this Emotional Crap!&lt;a href=&#39;http://awijnen.github.com/migrate&#39;&gt;&lt;input type=&quot;submit&quot; name=&quot;Submit&quot;&gt;&lt;/a&gt;&lt;/p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+    <h3>Create a layout</h3>
+  <p>It's time to create the html struture of our page. We'll do that in two parts. The first part is the skeleton of the website, which will basically be everything that's copied across pages (i.e. header, footer, background, etcera. This is typically stored in the <code>layout.erb</code> file.</p>
+
+  {% codeblock layout.erb lang:erb %}
+  <!doctype html>  
+    <html lang="en">  
+    <head>  
+      <meta charset="utf8">  
+      <title><%= @title + ' | Feeling Friday' %></title>  
+      <link href="http://awijnen.github.com/reset.css" rel="stylesheet" type="text/css">  
+      <link href="http://awijnen.github.com/style.css" rel="stylesheet" type="text/css">
+      <script src="http://awijnen.github.com/main.js"></script>
+    </head>  
+    <body>  
+      <header>  
+        <hgroup>  
+          <h1><a href="http://awijnen.github.com/">Feeling Friday</a></h1>  
+          <h2>'cause we're an emotional bunch</h2>
+          <a id = "github" href="https://github.com/awijnen/Feeling_Friday">
+            <img src= "https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
+          </a>   
+        </hgroup>  
+      </header>  
+      
+        <div id="main">
+          <%= yield %>  
+        </div>  
+        
+      <footer>  
+        <p><small>An app for the <a href="http://students.flatironschool.com/">Students of the Flatiron School</a>.</small></p> 
+      </footer> 
+
+      # Google Analytics
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-38874027-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
+
+    </body>  
+    </html>{% endcodeblock %}
+
+  <p>The most important line of code in <code>layout.erb</code> is where <code>yield</code> is defined. It is at this exact moment that we'll insert all the html content defined in <code>home.erb</code>, <code>edit.erb</code>, and <code>delete.erb</code> (and any other view you might want to add for that matter).</p>
+
+  <p>Next, we'll code up the html for the actual emotion form (where you add a new emotion), as well as the html that will display all the emotions from the database. Again, this code will be injected in <code>layout.erb</code> where <code>yield</code> is defined.</p>
+
+  {% codeblock home.erb: Display all emotions lang:erb %}
+      <section id="add">
+      <form action="/" method="post">
+        <textarea name="content" placeholder="Your deepest emotions go here&hellip;"></textarea>
+        <input type="submit" value="Save emotion">
+      </form>
+      </section>
+      <% @notes.each do |note| %>  
+        <article>  
+          <p>  
+            <%= note.content %>  
+            <span><a href="http://awijnen.github.com/<%= note.id %>">[edit]</a></span>  
+          </p>   
+          <p class="meta">Created: <%= note.created_at %></p>  
+        </article>
+        <br>
+      <% end %> 
+      <p class="remove">Remove all this Emotional Crap!<a href='http://awijnen.github.com/migrate'><input type="submit" name="Submit"></a></p>{% endcodeblock %}
+    {% endcodeblock %} 
+
+  <p>We'll continue now by adding in the routes to edit, and delete emotions, as well as create views for edit, and delete respectively.</p>
 
   <h3>Create an Emotion</h3>
     <p>Right now if you try submitting the form on the home page, you’re going to get a route error. Let’s create the POST route for the home page now:</p>
     
-    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Create a new emotion and save it to the database  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="n">post</span> <span class="s1">&#39;/post&#39;</span> <span class="k">do</span>
-</span><span class='line'>        <span class="n">n</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:content</span><span class="o">]</span>
-</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
-</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">updated_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
-</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">save</span>
-</span><span class='line'>        <span class="n">redirect</span> <span class="s1">&#39;/&#39;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+    {% codeblock Create a new emotion and save it to the database lang:ruby %}
+      post '/post' do
+        n = Note.new
+        n.content = params[:content]
+        n.created_at = Time.now
+        n.updated_at = Time.now
+        n.save
+        redirect '/'
+      end{% endcodeblock %}
 
     <p>So when a post request is made on the homepage, we create a new Note object in n (thanks to the DataMapper ORM, Note.new represents a new row in the notes table in the database). The content field is set to the submitted data from the textarea and the created_at and updated_at datetime fields are set to the current timestamp.</p>
     
     <p>The new note is then saved, and the user redirected back to the homepage where the new note will be displayed.</p>
 
   <h3>Update an emotion</h3>
-   <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Before we can update an emotion we have to fetch it first  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">get</span> <span class="s1">&#39;/:id&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="vi">@note</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">get</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
-</span><span class='line'>      <span class="vi">@title</span> <span class="o">=</span> <span class="s2">&quot;Edit note #</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="n">erb</span> <span class="ss">:edit</span>
-</span><span class='line'>    <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+   {% codeblock Before we can update an emotion we have to fetch it first lang:ruby %}
+    get '/:id' do  
+      @note = Note.get params[:id]  
+      @title = "Edit note ##{params[:id]}"  
+      erb :edit  
+    end{% endcodeblock %}
 
-   <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>The view for editing a note  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="o">&lt;</span><span class="sx">% if </span><span class="vi">@note</span> <span class="sx">%&gt;  </span>
-</span><span class='line'><span class="sx">      &lt;form action=&quot;/&lt;%= @note.id %&gt;</span><span class="s2">&quot; method=&quot;</span><span class="n">post</span><span class="s2">&quot; id=&quot;</span><span class="n">edit</span><span class="s2">&quot;&gt;  </span>
-</span><span class='line'><span class="s2">        &lt;input type=&quot;</span><span class="n">hidden</span><span class="s2">&quot; name=&quot;</span><span class="n">_method</span><span class="s2">&quot; value=&quot;</span><span class="n">put</span><span class="s2">&quot;&gt;  </span>
-</span><span class='line'><span class="s2">        &lt;textarea name=&quot;</span><span class="n">content</span><span class="s2">&quot;&gt;&lt;%= @note.content %&gt;&lt;/textarea&gt;   </span>
-</span><span class='line'><span class="s2">        &lt;input type=&quot;</span><span class="n">submit</span><span class="s2">&quot;&gt;  </span>
-</span><span class='line'><span class="s2">      &lt;/form&gt;  </span>
-</span><span class='line'><span class="s2">      &lt;p&gt;&lt;a href=&quot;</span><span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">awijnen</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/&lt;%=</span> <span class="vi">@note</span><span class="o">.</span><span class="n">id</span> <span class="sx">%&gt;/delete&quot;&gt;</span><span class="no">Delete</span><span class="o">&lt;</span><span class="sr">/a&gt;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="sx">% else %&gt;  </span>
-</span><span class='line'><span class="sx">      &lt;p&gt;</span><span class="no">Note</span> <span class="ow">not</span> <span class="n">found</span><span class="o">.</span><span class="n">&lt;</span><span class="sr">/p&gt;  </span>
-</span><span class='line'><span class="sr">    &lt;% end %&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>    
+   {% codeblock edit.erb: The view for editing a note lang:ruby %}
+    <% if @note %>  
+      <form action="/<%= @note.id %>" method="post" id="edit">  
+        <input type="hidden" name="_method" value="put">  
+        <textarea name="content"><%= @note.content %></textarea>   
+        <input type="submit">  
+      </form>  
+      <p><a href="http://awijnen.github.com/<%= @note.id %>/delete">Delete</a></p>  
+    <% else %>  
+      <p>Note not found.</p>  
+    <% end %>{% endcodeblock %}    
 
-    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Update an existing emotion and save it to the database  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="n">put</span> <span class="s1">&#39;/:id&#39;</span> <span class="k">do</span>
-</span><span class='line'>        <span class="n">n</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">get</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
-</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:content</span><span class="o">]</span>
-</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">complete</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:complete</span><span class="o">]</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">0</span>
-</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">updated_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
-</span><span class='line'>        <span class="n">n</span><span class="o">.</span><span class="n">save</span>
-</span><span class='line'>        <span class="n">redirect</span> <span class="s1">&#39;/&#39;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+    {% codeblock Update an existing emotion and save it to the database lang:ruby %}
+      put '/:id' do  
+        n = Note.get params[:id]  
+        n.content = params[:content]  
+        n.complete = params[:complete] ? 1 : 0  
+        n.updated_at = Time.now  
+        n.save  
+        redirect '/'  
+      end{% endcodeblock %}
 
   <h3>Delete an emotion</h3>
-    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Before we can delete an emotion we have to fetch it first  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>     <span class="n">get</span> <span class="s1">&#39;/:id/delete&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="vi">@note</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">get</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
-</span><span class='line'>      <span class="vi">@title</span> <span class="o">=</span> <span class="s2">&quot;Confirm deletion of note #</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="n">erb</span> <span class="ss">:delete</span>
-</span><span class='line'>    <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+    {% codeblock Before we can delete an emotion we have to fetch it first lang:ruby %}
+     get '/:id/delete' do  
+      @note = Note.get params[:id]  
+      @title = "Confirm deletion of note ##{params[:id]}"  
+      erb :delete  
+    end{% endcodeblock %}
 
-    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>The view for deleting a note  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">    </span><span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@note</span> <span class="cp">%&gt;</span><span class="x">  </span>
-</span><span class='line'><span class="x">      &lt;p&gt;Are you sure you want to delete the following note: &lt;em&gt;&quot;</span><span class="cp">&lt;%=</span> <span class="vi">@note</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span><span class="x">&quot;&lt;/em&gt;?&lt;/p&gt; </span>
-</span><span class='line'><span class="x">      &lt;form action=&quot;/</span><span class="cp">&lt;%=</span> <span class="vi">@note</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="x">&quot; method=&quot;post&quot;&gt;  </span>
-</span><span class='line'><span class="x">        &lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;delete&quot;&gt;  </span>
-</span><span class='line'><span class="x">        &lt;input type=&quot;submit&quot; value=&quot;Yes, Delete It!&quot;&gt;  </span>
-</span><span class='line'><span class="x">        &lt;a href=&quot;http://awijnen.github.com/</span><span class="cp">&lt;%=</span> <span class="vi">@note</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="x">&quot;&gt;Cancel&lt;/a&gt;  </span>
-</span><span class='line'><span class="x">      &lt;/form&gt;  </span>
-</span><span class='line'><span class="x">    </span><span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span><span class="x">  </span>
-</span><span class='line'><span class="x">      &lt;p&gt;Note not found.&lt;/p&gt;  </span>
-</span><span class='line'><span class="x">    </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span>
-</span></code></pre></td></tr></table></div></figure></notextile></div> 
+    {% codeblock delete.erb: The view for deleting a note lang:erb %}
+    <% if @note %>  
+      <p>Are you sure you want to delete the following note: <em>"<%= @note.content %>"</em>?</p> 
+      <form action="/<%= @note.id %>" method="post">  
+        <input type="hidden" name="_method" value="delete">  
+        <input type="submit" value="Yes, Delete It!">  
+        <a href="http://awijnen.github.com/<%= @note.id %>">Cancel</a>  
+      </form>  
+    <% else %>  
+      <p>Note not found.</p>  
+    <% end %>{% endcodeblock %} 
 
 
-    <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Delete an existing emotion, which removes it from the database  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">delete</span> <span class="s1">&#39;/:id&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">n</span> <span class="o">=</span> <span class="no">Note</span><span class="o">.</span><span class="n">get</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
-</span><span class='line'>      <span class="n">n</span><span class="o">.</span><span class="n">destroy</span>
-</span><span class='line'>      <span class="n">redirect</span> <span class="s1">&#39;/&#39;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+    {% codeblock Delete an existing emotion, which removes it from the database lang:ruby %}
+    delete '/:id' do  
+      n = Note.get params[:id]  
+      n.destroy  
+      redirect '/'  
+    end {% endcodeblock %}
 
   <h3>Create a layout</h3>
-  <p>It's time now to spice it up, and make our site look awesome. We'll do that in two parts. The first part is the skeleton of the website, which will basically be everything that's copied across pages (i.e. header, footer, background, etcera. This is typically stored in the <code>layout.erb</code> file.</p>
+  <p>It's time to create the html struture of our page. We'll do that in two parts. The first part is the skeleton of the website, which will basically be everything that's copied across pages (i.e. header, footer, background, etcera. This is typically stored in the <code>layout.erb</code> file.</p>
 
-  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>layout.erb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">  &lt;!doctype html&gt;  </span>
-</span><span class='line'><span class="x">    &lt;html lang=&quot;en&quot;&gt;  </span>
-</span><span class='line'><span class="x">    &lt;head&gt;  </span>
-</span><span class='line'><span class="x">      &lt;meta charset=&quot;utf8&quot;&gt;  </span>
-</span><span class='line'><span class="x">      &lt;title&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@title</span> <span class="o">+</span> <span class="s1">&#39; | Feeling Friday&#39;</span> <span class="cp">%&gt;</span><span class="x">&lt;/title&gt;  </span>
-</span><span class='line'><span class="x">      &lt;link href=&quot;http://awijnen.github.com/reset.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;  </span>
-</span><span class='line'><span class="x">      &lt;link href=&quot;http://awijnen.github.com/style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</span>
-</span><span class='line'><span class="x">      &lt;script src=&quot;http://awijnen.github.com/main.js&quot;&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="x">    &lt;/head&gt;  </span>
-</span><span class='line'><span class="x">    &lt;body&gt;  </span>
-</span><span class='line'><span class="x">      &lt;header&gt;  </span>
-</span><span class='line'><span class="x">        &lt;hgroup&gt;  </span>
-</span><span class='line'><span class="x">          &lt;h1&gt;&lt;a href=&quot;http://awijnen.github.com/&quot;&gt;Feeling Friday&lt;/a&gt;&lt;/h1&gt;  </span>
-</span><span class='line'><span class="x">          &lt;h2&gt;&#39;cause we&#39;re an emotional bunch&lt;/h2&gt;</span>
-</span><span class='line'><span class="x">          &lt;a id = &quot;github&quot; href=&quot;https://github.com/awijnen/Feeling_Friday&quot;&gt;</span>
-</span><span class='line'><span class="x">            &lt;img src= &quot;https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png&quot; alt=&quot;Fork me on GitHub&quot;&gt;</span>
-</span><span class='line'><span class="x">          &lt;/a&gt;   </span>
-</span><span class='line'><span class="x">        &lt;/hgroup&gt;  </span>
-</span><span class='line'><span class="x">      &lt;/header&gt;  </span>
-</span><span class='line'><span class="x">      </span>
-</span><span class='line'><span class="x">        &lt;div id=&quot;main&quot;&gt;</span>
-</span><span class='line'><span class="x">          </span><span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span><span class="x">  </span>
-</span><span class='line'><span class="x">        &lt;/div&gt;  </span>
-</span><span class='line'><span class="x">        </span>
-</span><span class='line'><span class="x">      &lt;footer&gt;  </span>
-</span><span class='line'><span class="x">        &lt;p&gt;&lt;small&gt;An app for the &lt;a href=&quot;http://students.flatironschool.com/&quot;&gt;Students of the Flatiron School&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt; </span>
-</span><span class='line'><span class="x">      &lt;/footer&gt; </span>
-</span><span class='line'>
-</span><span class='line'><span class="x">      # Google Analytics</span>
-</span><span class='line'><span class="x">      &lt;script type=&quot;text/javascript&quot;&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">        var _gaq = _gaq || [];</span>
-</span><span class='line'><span class="x">        _gaq.push([&#39;_setAccount&#39;, &#39;UA-38874027-1&#39;]);</span>
-</span><span class='line'><span class="x">        _gaq.push([&#39;_trackPageview&#39;]);</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">        (function() {</span>
-</span><span class='line'><span class="x">          var ga = document.createElement(&#39;script&#39;); ga.type = &#39;text/javascript&#39;; ga.async = true;</span>
-</span><span class='line'><span class="x">          ga.src = (&#39;https:&#39; == document.location.protocol ? &#39;https://ssl&#39; : &#39;http://www&#39;) + &#39;.google-analytics.com/ga.js&#39;;</span>
-</span><span class='line'><span class="x">          var s = document.getElementsByTagName(&#39;script&#39;)[0]; s.parentNode.insertBefore(ga, s);</span>
-</span><span class='line'><span class="x">        })();</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">      &lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">    &lt;/body&gt;  </span>
-</span><span class='line'><span class="x">    &lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+  {% codeblock layout.erb lang:erb %}
+  <!doctype html>  
+    <html lang="en">  
+    <head>  
+      <meta charset="utf8">  
+      <title><%= @title + ' | Feeling Friday' %></title>  
+      <link href="http://awijnen.github.com/reset.css" rel="stylesheet" type="text/css">  
+      <link href="http://awijnen.github.com/style.css" rel="stylesheet" type="text/css">
+      <script src="http://awijnen.github.com/main.js"></script>
+    </head>  
+    <body>  
+      <header>  
+        <hgroup>  
+          <h1><a href="http://awijnen.github.com/">Feeling Friday</a></h1>  
+          <h2>'cause we're an emotional bunch</h2>
+          <a id = "github" href="https://github.com/awijnen/Feeling_Friday">
+            <img src= "https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
+          </a>   
+        </hgroup>  
+      </header>  
+      
+        <div id="main">
+          <%= yield %>  
+        </div>  
+        
+      <footer>  
+        <p><small>An app for the <a href="http://students.flatironschool.com/">Students of the Flatiron School</a>.</small></p> 
+      </footer> 
+
+      # Google Analytics
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-38874027-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
+
+    </body>  
+    </html>{% endcodeblock %}
 
   <p>The most important line of code in <code>layout.erb</code> is where <code>yield</code> is defined. It is at this exact moment that we'll insert all the html content defined in <code>home.erb</code>, <code>edit.erb</code>, and <code>delete.erb</code> (and any other view you might want to add for that matter).</p>
 
   <p>Next, we'll code up the html for the actual emotion form (where you add a new emotion), as well as the html that will display all the emotions from the database. Again, this code will be injected in <code>layout.erb</code> where <code>yield</code> is defined.</p>
 
-  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>home.erb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">    &lt;section id=&quot;add&quot;&gt;</span>
-</span><span class='line'><span class="x">      &lt;form action=&quot;/post&quot; method=&quot;post&quot;&gt;</span>
-</span><span class='line'><span class="x">        &lt;textarea name=&quot;content&quot; placeholder=&quot;Your deepest emotions go here&amp;hellip;&quot;&gt;&lt;/textarea&gt;</span>
-</span><span class='line'><span class="x">        &lt;input type=&quot;submit&quot; value=&quot;Save emotion&quot;&gt;</span>
-</span><span class='line'><span class="x">      &lt;/form&gt;</span>
-</span><span class='line'><span class="x">    &lt;/section&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">    &lt;section id=&quot;notes&quot;&gt;</span>
-</span><span class='line'><span class="x">    </span><span class="cp">&lt;%</span> <span class="vi">@notes</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">note</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x">  </span>
-</span><span class='line'><span class="x">      &lt;article&gt;  </span>
-</span><span class='line'><span class="x">        &lt;p class = &quot;note-content&quot;&gt;  </span>
-</span><span class='line'><span class="x">          </span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span><span class="x">  </span>
-</span><span class='line'><span class="x">          &lt;span&gt;&lt;a href=&quot;http://awijnen.github.com/</span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="x">&quot;&gt;[edit]&lt;/a&gt;&lt;/span&gt;  </span>
-</span><span class='line'><span class="x">        &lt;/p&gt;   </span>
-</span><span class='line'><span class="x">        </span>
-</span><span class='line'><span class="x">        &lt;p class=&quot;meta&quot;&gt;Created: </span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">created_at</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%A, %d %b %y&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x">&lt;/p&gt;</span>
-</span><span class='line'><span class="x">        </span><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">note</span><span class="o">.</span><span class="n">comments</span> <span class="cp">%&gt;</span><span class="x"></span>
-</span><span class='line'><span class="x">          </span>
-</span><span class='line'><span class="x">        &lt;div class=&quot;comments&quot;&gt;</span>
-</span><span class='line'><span class="x">        </span><span class="cp">&lt;%</span> <span class="k">for</span> <span class="n">comment</span> <span class="k">in</span> <span class="n">note</span><span class="o">.</span><span class="n">comments</span> <span class="cp">%&gt;</span><span class="x"></span>
-</span><span class='line'><span class="x">          &lt;div class=&quot;comment&quot;&gt;</span>
-</span><span class='line'><span class="x">            &lt;p class = &quot;comment-content&quot;&gt;</span>
-</span><span class='line'><span class="x">              </span><span class="cp">&lt;%=</span> <span class="n">comment</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span><span class="x"></span>
-</span><span class='line'><span class="x">            &lt;/p&gt;</span>
-</span><span class='line'><span class="x">            &lt;p class=&quot;meta&quot;&gt;</span>
-</span><span class='line'><span class="x">              Created: </span><span class="cp">&lt;%=</span> <span class="n">comment</span><span class="o">.</span><span class="n">created_at</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%d %b - %H:%M&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x"></span>
-</span><span class='line'><span class="x">            &lt;/p&gt;</span>
-</span><span class='line'><span class="x">          &lt;/div&gt;</span>
-</span><span class='line'><span class="x">        </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span>
-</span><span class='line'><span class="x">          &lt;form action=&quot;/comment&quot; method=&quot;post&quot; id=&quot;comment-form-</span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="x">&quot; style=&quot;display: none;&quot;&gt;</span>
-</span><span class='line'><span class="x">            &lt;input name=&quot;content&quot; size=&quot;34&quot; placeholder=&quot;Your deepest response to deep emotion&amp;hellip;&quot;&gt;&lt;/input&gt;</span>
-</span><span class='line'><span class="x">            &lt;input name=&quot;id&quot; type=&quot;text&quot; style=&quot;display: none;&quot; value=&quot;</span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="x">&quot;&gt;&lt;/input&gt;</span>
-</span><span class='line'><span class="x">            &lt;input type=&quot;submit&quot; value=&quot;Comment&quot;&gt;</span>
-</span><span class='line'><span class="x">          &lt;/form&gt;</span>
-</span><span class='line'><span class="x">          &lt;a onclick=&quot;toggleForm(this, </span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="x">)&quot; class=&quot;form-toggle&quot;&gt;comment&lt;/a&gt;</span>
-</span><span class='line'><span class="x">        &lt;/div&gt;</span>
-</span><span class='line'><span class="x">        </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span>
-</span><span class='line'><span class="x">      &lt;/article&gt;</span>
-</span><span class='line'><span class="x">      </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"> </span>
-</span><span class='line'><span class="x">    &lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+  {% codeblock home.erb lang:erb %}
+    {% endcodeblock %}
 
 
 <!-- <p class="remove">Remove all this Emotional Crap!<a href='http://awijnen.github.com/migrate'><input type="submit" name="Submit"></a></p> -->
 
   <h3>Time for some Style</h3>
+  <p>Our routes and views are all set. Time to make the whole thing look pretty.</p>
 
-  <h3>What's Next?</h3>
 
+
+  <h3>Conclusion</h3>
+  <p>There you have it, you built your first data driven Sinatra app. Awesome! Hope you enjoyed it. Don't hesitate to reach out on <a href="https://www.twitter.com/anthonywijnen">twitter</a>, or <a href="http://github.com/awijnen">github</a> if you have any questions.</p>
 
 </div>
 
