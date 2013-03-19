@@ -141,6 +141,8 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+  <p>We’re going to be using a PostgreSQL database to store the notes, and we’ll use the gem <a href="http://datamapper.org/">DataMapper</a> to communicate with the database. DataMapper is a gem that packages all the code you need to automatically map the classes you create to entries in the database. For example, we&#8217;ll create a class Notes, which DataMapper will &#8216;map&#8217; to a Notes table in the database. Every time you create a new Notes instance (i.e. you create a note), DataMapper will make sure it saves it to the database. Finally, you&#8217;ll need to specify an adapter gem, that DataMapper will use to talk to your preferred database technology. In our case PostgreSQL.</p>
+
   <h3>Build your model and Setup the Database</h3>
 
     
@@ -160,6 +162,19 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;postgres://localhost/mydb&#39;</span><span class="p">)</span>
 </span><span class='line'>
 </span><span class='line'>      <span class="k">class</span> <span class="nc">Note</span>
@@ -172,6 +187,19 @@
 </span><span class='line'>        <span class="n">property</span> <span class="ss">:complete</span><span class="p">,</span> <span class="no">Boolean</span><span class="p">,</span> <span class="ss">:required</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="kp">false</span>
 </span><span class='line'>        <span class="n">property</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">DateTime</span>
 </span><span class='line'>        <span class="n">property</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="no">DateTime</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">has</span> <span class="n">n</span><span class="p">,</span> <span class="ss">:comments</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">class</span> <span class="nc">Comment</span>
+</span><span class='line'>        <span class="kp">include</span> <span class="ss">DataMapper</span><span class="p">:</span><span class="ss">:Resource</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">property</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Serial</span>
+</span><span class='line'>        <span class="n">property</span> <span class="ss">:content</span><span class="p">,</span> <span class="no">Text</span>
+</span><span class='line'>        <span class="n">property</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">DateTime</span>
+</span><span class='line'>        <span class="n">property</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="no">DateTime</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">belongs_to</span> <span class="ss">:note</span>
 </span><span class='line'>      <span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'>      <span class="no">DataMapper</span><span class="o">.</span><span class="n">finalize</span><span class="o">.</span><span class="n">auto_upgrade!</span>
