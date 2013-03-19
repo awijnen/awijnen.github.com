@@ -4,7 +4,7 @@
   <title><![CDATA[Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-03-18T22:14:18-04:00</updated>
+  <updated>2013-03-18T22:24:42-04:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -54,9 +54,11 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-  <p>We’re going to be using a PostgreSQL database to store the notes, and we’ll use the gem <a href="http://datamapper.org/">DataMapper</a> to communicate with the database. DataMapper is a gem that packages all the code you need to automatically map the classes you create to entries in the database. For example, we&#8217;ll create a class Notes, which DataMapper will &#8216;map&#8217; to a Notes table in the database. Every time you create a new Notes instance (i.e. you create a note), DataMapper will make sure it saves it to the database. Finally, you&#8217;ll need to specify an adapter gem, that DataMapper will use to talk to your preferred database technology. In our case PostgreSQL.</p>
+  <p>We’re going to be using a PostgreSQL database to store the notes, and we’ll use the gem <a href="http://datamapper.org/">DataMapper</a> to communicate with the database. DataMapper is a gem that packages all the code you need to automatically map the classes you create to entries in the database. For example, we&#8217;ll create a class Notes, which DataMapper will &#8216;map&#8217; to a Notes table in the database. Every time you create a new Notes instance (i.e. you create a note), DataMapper will make sure it saves it to the database. Finally, you&#8217;ll need to specify an adapter gem, that&#8217;ll allow DataMapper to talk to the type of database you selected (in our case PostgreSQL).</p>
 
   <h3>Build your model and Setup the Database</h3>
+
+  <p>Let&#8217;s take advantage of <a href="http://datamapper.org/">DataMapper</a> right away. We&#8217;ll create the class Note, and Comment, which are the two key building block of our Feeling Friday app, and we&#8217;ll include DataMapper as a resource. This allows us to specify properties, that&#8217;ll map to columns in the database table.</p>
 
     
 <figure class='code'><figcaption><span>Set up Database in feelingfriday.rb  </span></figcaption>
@@ -119,6 +121,8 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+      <p></p>
+
   <h3>Setting up the Home Page</h3>
   <p>Once we&#8217;re done it&#8217;ll look like this, but let&#8217;s take it one step at a time.</p>
   <img src="http://awijnen.github.com/images/feelingfridayapp.png">
@@ -139,6 +143,12 @@
 </span><span class='line'>      <span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+  <p>On the second line you see how we retrieve all the notes from the database. If you’ve used ActiveRecord (the ORM used in Rails) before, DataMapper’s syntax will feel very familiar. The notes are assigned to the @notes instance variable. It’s important to use instance variables (that’s variables beginning with an @) so that they’ll be accessible from within the view file.
+  </p>
+  <p>We set the @title instance variable, and load the views/home.erb view file through the ERB parser.</p> 
+  <p>Create the views/home.erb view file and start it off with the following:
+  </p>
 
   
 <figure class='code'><figcaption><span>Create a view for the home page  </span></figcaption>
