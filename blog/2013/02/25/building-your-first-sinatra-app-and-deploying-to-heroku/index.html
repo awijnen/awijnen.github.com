@@ -211,7 +211,7 @@
   <p>Once we&#8217;re done it&#8217;ll look like this, but let&#8217;s take it one step at a time.</p>
   <img src="/images/feelingfridayapp.png">
 
-  <p>First</p>
+  <p>First, let&#8217;s go into <code>feelingfriday.rb</code> and</p>
 
   
 <figure class='code'><figcaption><span>Get all emotions from the database and display them in the home page  </span></figcaption>
@@ -228,9 +228,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-  <p>On the second line you see how we retrieve all the notes from the database. If you’ve used ActiveRecord (the ORM used in Rails) before, DataMapper’s syntax will feel very familiar. The notes are assigned to the @notes instance variable. It’s important to use instance variables (that’s variables beginning with an @) so that they’ll be accessible from within the view file.
+  <p>On the second line you see how we retrieve all the notes from the database. If you’ve used ActiveRecord (the ORM used in Rails) before, DataMapper’s syntax will feel very familiar. The notes are assigned to the <code>@notes</code> instance variable. It’s important to use instance variables (that’s variables beginning with an @) so that they’ll be accessible from within the view file.
   </p>
-  <p>We set the @title instance variable, and load the views/home.erb view file through the ERB parser.</p> 
+  <p>We set the <code>@title</code> instance variable, and load the views/home.erb view file through the ERB parser.</p> 
   <p>Create the views/home.erb view file and start it off with the following:
   </p>
 

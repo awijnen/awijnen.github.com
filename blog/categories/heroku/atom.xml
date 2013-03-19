@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Heroku | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/heroku/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-03-18T22:24:42-04:00</updated>
+  <updated>2013-03-18T22:35:50-04:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -123,7 +123,7 @@
   <p>Once we're done it'll look like this, but let's take it one step at a time.</p>
   <img src="http://awijnen.github.com/images/feelingfridayapp.png">
 
-  <p>First</p>
+  <p>First, let's go into <code>feelingfriday.rb</code> and</p>
 
   <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Get all emotions from the database and display them in the home page  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -138,9 +138,9 @@
 </span><span class='line'>      <span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-  <p>On the second line you see how we retrieve all the notes from the database. If you’ve used ActiveRecord (the ORM used in Rails) before, DataMapper’s syntax will feel very familiar. The notes are assigned to the @notes instance variable. It’s important to use instance variables (that’s variables beginning with an @) so that they’ll be accessible from within the view file.
+  <p>On the second line you see how we retrieve all the notes from the database. If you’ve used ActiveRecord (the ORM used in Rails) before, DataMapper’s syntax will feel very familiar. The notes are assigned to the <code>@notes</code> instance variable. It’s important to use instance variables (that’s variables beginning with an @) so that they’ll be accessible from within the view file.
   </p>
-  <p>We set the @title instance variable, and load the views/home.erb view file through the ERB parser.</p> 
+  <p>We set the <code>@title</code> instance variable, and load the views/home.erb view file through the ERB parser.</p> 
   <p>Create the views/home.erb view file and start it off with the following:
   </p>
 
