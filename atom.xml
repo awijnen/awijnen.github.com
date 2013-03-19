@@ -4,7 +4,7 @@
   <title><![CDATA[Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-03-18T23:34:45-04:00</updated>
+  <updated>2013-03-18T23:35:53-04:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -256,7 +256,7 @@
   <p>Next, we&#8217;ll code up the html for the actual emotion form (where you add a new emotion), as well as the html that will display all the emotions from the database. Again, this code will be injected in <code>layout.erb</code> where <code>yield</code> is defined.</p>
 
   
-<figure class='code'><figcaption><span>home.erb: Display all emotions  </span></figcaption>
+<figure class='code'><figcaption><span>home.erb  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -274,23 +274,23 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">      &lt;section id=&quot;add&quot;&gt;</span>
-</span><span class='line'><span class="x">      &lt;form action=&quot;/&quot; method=&quot;post&quot;&gt;</span>
-</span><span class='line'><span class="x">        &lt;textarea name=&quot;content&quot; placeholder=&quot;Your deepest emotions go here&amp;hellip;&quot;&gt;&lt;/textarea&gt;</span>
-</span><span class='line'><span class="x">        &lt;input type=&quot;submit&quot; value=&quot;Save emotion&quot;&gt;</span>
-</span><span class='line'><span class="x">      &lt;/form&gt;</span>
-</span><span class='line'><span class="x">      &lt;/section&gt;</span>
-</span><span class='line'><span class="x">      </span><span class="cp">&lt;%</span> <span class="vi">@notes</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">note</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x">  </span>
-</span><span class='line'><span class="x">        &lt;article&gt;  </span>
-</span><span class='line'><span class="x">          &lt;p&gt;  </span>
-</span><span class='line'><span class="x">            </span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span><span class="x">  </span>
-</span><span class='line'><span class="x">            &lt;span&gt;&lt;a href=&quot;/</span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="x">&quot;&gt;[edit]&lt;/a&gt;&lt;/span&gt;  </span>
-</span><span class='line'><span class="x">          &lt;/p&gt;   </span>
-</span><span class='line'><span class="x">          &lt;p class=&quot;meta&quot;&gt;Created: </span><span class="cp">&lt;%=</span> <span class="n">note</span><span class="o">.</span><span class="n">created_at</span> <span class="cp">%&gt;</span><span class="x">&lt;/p&gt;  </span>
-</span><span class='line'><span class="x">        &lt;/article&gt;</span>
-</span><span class='line'><span class="x">        &lt;br&gt;</span>
-</span><span class='line'><span class="x">      </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"> </span>
-</span><span class='line'><span class="x">      &lt;p class=&quot;remove&quot;&gt;Remove all this Emotional Crap!&lt;a href=&#39;/migrate&#39;&gt;&lt;input type=&quot;submit&quot; name=&quot;Submit&quot;&gt;&lt;/a&gt;&lt;/p&gt;</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>      <span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">&quot;add&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">&quot;content&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;Your deepest emotions go here&amp;hellip;&quot;</span><span class="nt">&gt;&lt;/textarea&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;Save emotion&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/form&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/section&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>% @notes.each do |note| %&gt;
+</span><span class='line'>        <span class="nt">&lt;article&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>
+</span><span class='line'>            <span class="err">&lt;</span>%= note.content %&gt;
+</span><span class='line'>            <span class="nt">&lt;span&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/&lt;%= note.id %&gt;&quot;</span><span class="nt">&gt;</span>[edit]<span class="nt">&lt;/a&gt;&lt;/span&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;meta&quot;</span><span class="nt">&gt;</span>Created: <span class="err">&lt;</span>%= note.created_at %&gt;<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/article&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;br&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>% end %&gt;
+</span><span class='line'>      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;remove&quot;</span><span class="nt">&gt;</span>Remove all this Emotional Crap!<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;/migrate&#39;</span><span class="nt">&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">name=</span><span class="s">&quot;Submit&quot;</span><span class="nt">&gt;&lt;/a&gt;&lt;/p&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
