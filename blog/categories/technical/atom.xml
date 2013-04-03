@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technical | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/technical/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-04-02T09:31:03-04:00</updated>
+  <updated>2013-04-03T09:49:46-04:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -52,7 +52,7 @@
 </span><span class='line'>    <span class="nb">require</span> <span class="s1">&#39;dm-postgres-adapter&#39;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-  <p>We’re going to be using a PostgreSQL database to store the notes, and we’ll use the gem <a href="http://datamapper.org/">DataMapper</a> to communicate with the database. DataMapper is a gem that packages all the code you need to automatically map the classes you create to entries in the database. For example, we'll create a class Notes, which DataMapper will 'map' to a Notes table in the database. Every time you create a new Notes instance (i.e. you create a note), DataMapper will make sure it saves it to the database. Finally, you'll need to specify an adapter gem, that'll allow DataMapper to talk to the type of database you selected (in our case PostgreSQL).</p>
+  <p>We’re going to be using a PostgreSQL database to store the notes, and we’ll use the gem <a href="http://datamapper.org/">DataMapper</a> to communicate with the database. DataMapper is a gem that packages all the code you need to automatically map the classes you create to entries in the database. For example, we'll create a class Note, which DataMapper will 'map' to a Notes table in the database. Every time you create a new Note instance (i.e. you create a note), DataMapper will make sure it saves it to the database. Finally, you'll need to specify an adapter gem, that'll allow DataMapper to talk to the type of database you selected (in our case PostgreSQL).</p>
 
   <p>Please note that throughout the rest of this post I'll use 'Note' and 'Emotion' interchangeably.</p>
 
