@@ -2,40 +2,40 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://awijnen.github.com/blog/2013/02/05/hello-world/</loc>
-        <lastmod>2013-04-03T09:59:20-04:00</lastmod>
+        <lastmod>2013-04-03T15:59:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://awijnen.github.com/blog/2013/02/12/programming-used-to-be-my-kryptonite/</loc>
-        <lastmod>2013-04-03T09:59:22-04:00</lastmod>
+        <lastmod>2013-04-03T15:59:22+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://awijnen.github.com/blog/2013/02/25/building-your-first-sinatra-app-and-deploying-to-heroku/
         </loc>
-        <lastmod>2013-04-03T09:59:22-04:00</lastmod>
+        <lastmod>2013-04-03T15:59:22+02:00</lastmod>
     </url>
     <url>
         <loc>http://awijnen.github.com/404.html</loc>
-        <lastmod>2013-04-03T09:59:20-04:00</lastmod>
+        <lastmod>2013-04-03T15:59:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://awijnen.github.com/about/</loc>
-        <lastmod>2013-04-03T09:59:22-04:00</lastmod>
+        <lastmod>2013-04-03T15:59:22+02:00</lastmod>
     </url>
     <url>
         <loc>http://awijnen.github.com/blog/archives/</loc>
-        <lastmod>2013-04-03T09:59:22-04:00</lastmod>
+        <lastmod>2013-04-03T15:59:22+02:00</lastmod>
     </url>
     <url>
         <loc>http://awijnen.github.com/</loc>
-        <lastmod>2013-04-03T09:59:22-04:00</lastmod>
+        <lastmod>2013-04-03T15:59:22+02:00</lastmod>
     </url>
     <url>
         <loc>http://awijnen.github.com/projects/</loc>
-        <lastmod>2013-04-03T09:59:22-04:00</lastmod>
+        <lastmod>2013-04-03T15:59:22+02:00</lastmod>
     </url>
     <url>
         <loc>http://awijnen.github.com/robots.txt</loc>
-        <lastmod>2013-04-03T09:54:12-04:00</lastmod>
+        <lastmod>2013-04-03T15:54:12+02:00</lastmod>
     </url>
 </urlset>

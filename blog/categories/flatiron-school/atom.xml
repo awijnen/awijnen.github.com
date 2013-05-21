@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Flatiron School | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/flatiron-school/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-04-17T16:15:07-04:00</updated>
+  <updated>2013-05-21T14:43:08+02:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Building my first data-driven Sinatra app and deploying it to Heroku]]></title>
     <link href="http://awijnen.github.com/blog/2013/02/25/building-your-first-sinatra-app-and-deploying-to-heroku/"/>
-    <updated>2013-02-25T00:06:00-05:00</updated>
+    <updated>2013-02-25T00:06:00+01:00</updated>
     <id>http://awijnen.github.com/blog/2013/02/25/building-your-first-sinatra-app-and-deploying-to-heroku</id>
     <content type="html"><![CDATA[<div class='container'>
   <p>We just wrapped up our third week at the <a href="http://www.flatironschool.com">Flatiron School</a>. It's been intense, exhausting, but at the same time insanely gratifying. One of the things that kept us all sane is our weekly tradition called 'Feeling Friday', in which we collectively share what's on our mind.</p>
@@ -795,7 +795,7 @@
   <entry>
     <title type="html"><![CDATA[Programming used to be my kryptonite]]></title>
     <link href="http://awijnen.github.com/blog/2013/02/12/programming-used-to-be-my-kryptonite/"/>
-    <updated>2013-02-12T11:43:00-05:00</updated>
+    <updated>2013-02-12T11:43:00+01:00</updated>
     <id>http://awijnen.github.com/blog/2013/02/12/programming-used-to-be-my-kryptonite</id>
     <content type="html"><![CDATA[<div class='container'>
 <p>As an EE major I enjoyed dabbling with hardware. Nice and tangible. However, for some strange reason, I consistently cringed at the thought of writing a line of code. </p>
@@ -837,7 +837,7 @@
   <entry>
     <title type="html"><![CDATA[Hello World]]></title>
     <link href="http://awijnen.github.com/blog/2013/02/05/hello-world/"/>
-    <updated>2013-02-05T20:13:00-05:00</updated>
+    <updated>2013-02-05T20:13:00+01:00</updated>
     <id>http://awijnen.github.com/blog/2013/02/05/hello-world</id>
     <content type="html"><![CDATA[<p>Some text</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: test | Anthony Wijnen]]></title>
   <link href="http://awijnen.github.com/blog/categories/test/atom.xml" rel="self"/>
   <link href="http://awijnen.github.com/"/>
-  <updated>2013-04-17T16:15:07-04:00</updated>
+  <updated>2013-05-21T14:43:08+02:00</updated>
   <id>http://awijnen.github.com/</id>
   <author>
     <name><![CDATA[Anthony Wijnen]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Hello World]]></title>
     <link href="http://awijnen.github.com/blog/2013/02/05/hello-world/"/>
-    <updated>2013-02-05T20:13:00-05:00</updated>
+    <updated>2013-02-05T20:13:00+01:00</updated>
     <id>http://awijnen.github.com/blog/2013/02/05/hello-world</id>
     <content type="html"><![CDATA[<p>Some text</p>
 
